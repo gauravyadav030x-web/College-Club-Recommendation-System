@@ -242,12 +242,13 @@ Open `http://localhost:5173` in your browser.
 | **Demo Admin** | `admin@university.edu` | `Admin@College2026` | Admin Intelligence Hub, approve/reject memberships, create/edit clubs |
 
 *(Quick login buttons are also available on the Login page for one-click demonstration).*
-📁 Project Structure Note
+
+## 📁 Project Structure Note
 
 The project follows a modular architecture with separate folders for the backend, frontend, database, and documentation. Generated files, local databases, and environment configurations may vary depending on your local setup.
 
-⚙️ Installation & Setup
-📋 Prerequisites
+## ⚙️ Installation & Setup
+# 📋 Prerequisites
 
 Make sure the following tools are installed:
 
@@ -256,7 +257,7 @@ Node.js 18 or newer
 npm
 Git (optional)
 Docker and Docker Compose (optional)
-🪟 Option 1: Windows Quick Start
+# 🪟 Option 1: Windows Quick Start
 
 From the project root, run:
 
@@ -266,12 +267,12 @@ powershell
 
 The startup script is designed to prepare the application environment, initialize sample data, and launch the backend and frontend services.
 
-🐧 Option 2: macOS / Linux Quick Start
+# 🐧 Option 2: macOS / Linux Quick Start
 bash
 chmod +x start.sh
 ./start.sh
 
-⚙️ Option 3: Manual Installation
+# ⚙️ Option 3: Manual Installation
 Step 1: Set Up the Backend
 
 Navigate to the backend directory and create a virtual environment:
@@ -283,13 +284,13 @@ python -m venv venv
 
 Activate the virtual environment.
 
-Windows PowerShell:
+# Windows PowerShell:
 
 powershell
 .\venv\Scripts\Activate.ps1
 
 
-macOS / Linux:
+# macOS / Linux:
 
 bash
 source venv/bin/activate
@@ -307,7 +308,7 @@ Start the FastAPI development server:
 bash
 uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 
-Step 2: Set Up the Frontend
+# Step 2: Set Up the Frontend
 
 Open a second terminal and run:
 
@@ -316,13 +317,13 @@ cd frontend
 npm install
 npm run dev
 
-🌐 Local Application URLs
+## 🌐 Local Application URLs
 Service	URL
 Frontend Application	http://localhost:5173
 Backend API	http://127.0.0.1:8000
 Interactive API Documentation	http://127.0.0.1:8000/docs
 Note: Start the backend before using frontend features that require API access.
-🔑 Demo Credentials
+## 🔑 Demo Credentials
 
 After initializing the sample database with the provided seed script, the following demo accounts are intended to be available.
 
@@ -337,7 +338,7 @@ Access Privileges
 
 CampusConnect includes automated tests covering API functionality, graph traversal, recommendation scoring, and deterministic ranking.
 
-Backend Tests
+# Backend Tests
 
 Run the following command from the project root:
 
@@ -348,12 +349,12 @@ python -m pytest -v
 
 The documented test suite contains 12 tests covering the following areas:
 
-Test Area	Coverage
+# Test Area	Coverage
 API Integration	Health check, login and token generation, recommendations, club directory, and admin access protection
 Graph Engine	Graph construction, BFS traversal, and graph analytics
 Recommendation Engine	Text normalization, set overlap, deterministic tie-breaking, active-club filtering, and empty-interest fallback
-Frontend Production Build
 
+# Frontend Production Build
 Run the following commands:
 
 bash
@@ -365,28 +366,25 @@ npm run build
 A successful build generates optimized production assets in the dist/ directory.
 
 Verification Note: The results above are based on the supplied project documentation. Run the commands locally to verify the current state of your checkout.
-🐳 Docker Deployment
-
+## 🐳 Docker Deployment
 If Docker and Docker Compose are configured, build and start the application using:
 
 bash
 docker compose up --build -d
 
-Service Endpoints
+## Service Endpoints
 Service	URL / Port
 Frontend	http://localhost:5173
 Backend API	http://localhost:8000
 FastAPI Swagger UI	http://localhost:8000/docs
 PostgreSQL	5432 (if exposed by the Compose configuration)
-Production Tip: Configure environment variables, persistent database storage, restricted network access, HTTPS, and reverse-proxy settings before deploying publicly.
-📚 API Documentation
+<hr>
+## 📚 API Documentation
 
 CampusConnect provides RESTful APIs powered by FastAPI.
-
 Explore the interactive Swagger UI:
 
-Open FastAPI API Documentation
-
+# Open FastAPI API Documentation
 The API is organized into the following modules:
 
 🔐 Authentication and student profiles
@@ -399,7 +397,9 @@ The API is organized into the following modules:
 
 For detailed endpoints, request schemas, and response examples, refer to docs/API_DOCUMENTATION.md.
 
-🚀 Future Enhancements
+<hr>
+
+## 🚀 Future Enhancements
 
 Potential improvements for future versions include:
 
@@ -412,26 +412,33 @@ Potential improvements for future versions include:
 ☁️ Implement cloud deployment and CI/CD automation.
 🔍 Evaluate recommendations using Precision@K, Recall@K, and NDCG.
 ♿ Improve accessibility and expand automated frontend testing.
-👨‍💻 Author
 
-Gaurav Yadav
+<hr>
+
+## 👨‍💻 Author
+
+# Gaurav Yadav
 
 Student Developer | Machine Learning & Data Structures Enthusiast
 
 CampusConnect is an academic software project demonstrating the integration of full-stack web development, Machine Learning, graph algorithms, and database-driven application design.
 
-🎯 Areas of Interest
+<hr>
+
+## 🎯 Areas of Interest
 Python and Backend Development
 Machine Learning and Recommendation Systems
 Data Structures and Algorithms
 Full-Stack Web Development
 Graph Theory and Intelligent Search
-📄 License
 
-This project is intended to be distributed under the MIT License.
+<hr>
+
+## 📄 License
+This project is intended to be distributed under the MIT License.        
 
 Ensure that the repository contains a valid LICENSE file with the MIT License text before claiming MIT licensing.
-
+<hr>
 <p align="center">
 <b>Built with 💙 by Gaurav Yadav</b>
 <br/>
