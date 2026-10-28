@@ -1,5 +1,3 @@
-# College-Club-Recommendation-System
-
 # CampusConnect - College Club Recommendation System
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
