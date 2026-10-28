@@ -242,78 +242,199 @@ Open `http://localhost:5173` in your browser.
 | **Demo Admin** | `admin@university.edu` | `Admin@College2026` | Admin Intelligence Hub, approve/reject memberships, create/edit clubs |
 
 *(Quick login buttons are also available on the Login page for one-click demonstration).*
+📁 Project Structure Note
 
----
+The project follows a modular architecture with separate folders for the backend, frontend, database, and documentation. Generated files, local databases, and environment configurations may vary depending on your local setup.
 
-## Creating the First Admin Securely
-To promote a user to administrator without hardcoding credentials in production:
-```bash
+⚙️ Installation & Setup
+📋 Prerequisites
+
+Make sure the following tools are installed:
+
+Python 3.10 or newer
+Node.js 18 or newer
+npm
+Git (optional)
+Docker and Docker Compose (optional)
+🪟 Option 1: Windows Quick Start
+
+From the project root, run:
+
+powershell
+.\start.bat
+
+
+The startup script is designed to prepare the application environment, initialize sample data, and launch the backend and frontend services.
+
+🐧 Option 2: macOS / Linux Quick Start
+bash
+chmod +x start.sh
+./start.sh
+
+⚙️ Option 3: Manual Installation
+Step 1: Set Up the Backend
+
+Navigate to the backend directory and create a virtual environment:
+
+bash
 cd backend
-python scripts/create_admin.py --email admin@mycollege.edu --name "Campus Dean"
-```
-You will be prompted to enter and confirm a secure password interactively.
+python -m venv venv
 
----
 
-## Running the Automated Test Suite
+Activate the virtual environment.
 
-Run the full pytest suite from the `backend/` directory:
-```bash
+Windows PowerShell:
+
+powershell
+.\venv\Scripts\Activate.ps1
+
+
+macOS / Linux:
+
+bash
+source venv/bin/activate
+
+
+Install dependencies and initialize the sample database:
+
+bash
+python -m pip install -r requirements.txt
+python scripts/seed.py
+
+
+Start the FastAPI development server:
+
+bash
+uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+
+Step 2: Set Up the Frontend
+
+Open a second terminal and run:
+
+bash
+cd frontend
+npm install
+npm run dev
+
+🌐 Local Application URLs
+Service	URL
+Frontend Application	http://localhost:5173
+Backend API	http://127.0.0.1:8000
+Interactive API Documentation	http://127.0.0.1:8000/docs
+Note: Start the backend before using frontend features that require API access.
+🔑 Demo Credentials
+
+After initializing the sample database with the provided seed script, the following demo accounts are intended to be available.
+
+Role	Email	Password
+🎓 Student	student@university.edu	Student@College2026
+👑 Administrator	admin@university.edu	Admin@College2026
+Access Privileges
+🎓 Student: Explore clubs, receive personalized recommendations, save favorites, submit membership applications, and rate recommendations.
+👑 Administrator: Manage clubs, review membership applications, and access administrative analytics.
+🔒 Security Notice: These are development-only demonstration credentials. Replace them and disable demo access before public deployment. If these credentials have been exposed in a public repository, rotate them.
+🧪 Testing & Quality Assurance
+
+CampusConnect includes automated tests covering API functionality, graph traversal, recommendation scoring, and deterministic ranking.
+
+Backend Tests
+
+Run the following command from the project root:
+
+bash
 cd backend
 python -m pytest -v
-```
 
-### Verified Test Results:
-```
-tests/test_api.py::test_health_check PASSED                             [  8%]
-tests/test_api.py::test_login_and_token PASSED                          [ 16%]
-tests/test_api.py::test_recommendation_endpoint PASSED                  [ 25%]
-tests/test_api.py::test_clubs_endpoint PASSED                           [ 33%]
-tests/test_api.py::test_admin_rbac_protection PASSED                    [ 41%]
-tests/test_graph.py::test_graph_construction_and_bfs_traversal PASSED   [ 50%]
-tests/test_graph.py::test_graph_analytics PASSED                        [ 58%]
-tests/test_recommender.py::test_text_normalization PASSED               [ 66%]
-tests/test_recommender.py::test_set_overlap_calculation PASSED          [ 75%]
-tests/test_recommender.py::test_deterministic_tie_breaking PASSED       [ 83%]
-tests/test_recommender.py::test_recommendation_engine_filtering PASSED  [ 91%]
-tests/test_recommender.py::test_empty_interests_fallback PASSED         [100%]
 
-======================= 12 passed in 8.82s =======================
-```
+The documented test suite contains 12 tests covering the following areas:
 
-### Verifying Frontend Production Build:
-```bash
+Test Area	Coverage
+API Integration	Health check, login and token generation, recommendations, club directory, and admin access protection
+Graph Engine	Graph construction, BFS traversal, and graph analytics
+Recommendation Engine	Text normalization, set overlap, deterministic tie-breaking, active-club filtering, and empty-interest fallback
+Frontend Production Build
+
+Run the following commands:
+
+bash
 cd frontend
+npm install
 npm run build
-```
-Builds cleanly with zero errors.
 
----
 
-## Docker Deployment (Production)
+A successful build generates optimized production assets in the dist/ directory.
 
-Deploy backend, PostgreSQL database, and Nginx-served frontend using Docker Compose:
-```bash
-docker-compose up --build -d
-```
-- Frontend UI: `http://localhost:5173`
-- Backend API: `http://localhost:8000`
-- PostgreSQL: Port `5432`
+Verification Note: The results above are based on the supplied project documentation. Run the commands locally to verify the current state of your checkout.
+🐳 Docker Deployment
 
----
+If Docker and Docker Compose are configured, build and start the application using:
 
-## Troubleshooting
+bash
+docker compose up --build -d
 
-1. **Port 8000 or 5173 Already in Use**:
-   - Change the port in `backend/app/config.py` and `frontend/vite.config.js`.
-2. **Missing Python Modules**:
-   - Run `pip install -r backend/requirements.txt`.
-3. **Database Reset**:
-   - Delete `backend/college_clubs.db` and re-run `python backend/scripts/seed.py`.
+Service Endpoints
+Service	URL / Port
+Frontend	http://localhost:5173
+Backend API	http://localhost:8000
+FastAPI Swagger UI	http://localhost:8000/docs
+PostgreSQL	5432 (if exposed by the Compose configuration)
+Production Tip: Configure environment variables, persistent database storage, restricted network access, HTTPS, and reverse-proxy settings before deploying publicly.
+📚 API Documentation
 
----
+CampusConnect provides RESTful APIs powered by FastAPI.
 
-## License
-MIT License. Built for university demonstration and academic submission.
+Explore the interactive Swagger UI:
 
+Open FastAPI API Documentation
+
+The API is organized into the following modules:
+
+🔐 Authentication and student profiles
+🏢 Club discovery, search, and details
+🤖 Personalized recommendations
+❤️ Favorite clubs
+📨 Membership applications
+⭐ Recommendation feedback
+👑 Administrative management and analytics
+
+For detailed endpoints, request schemas, and response examples, refer to docs/API_DOCUMENTATION.md.
+
+🚀 Future Enhancements
+
+Potential improvements for future versions include:
+
+📱 Develop a mobile-friendly Progressive Web App (PWA).
+🧠 Improve recommendations using student feedback and interaction history.
+📅 Integrate calendars for club events and meetings.
+🔔 Add notifications for membership decisions and upcoming activities.
+📊 Expand campus analytics and reporting dashboards.
+🕸️ Introduce interactive graph visualization.
+☁️ Implement cloud deployment and CI/CD automation.
+🔍 Evaluate recommendations using Precision@K, Recall@K, and NDCG.
+♿ Improve accessibility and expand automated frontend testing.
+👨‍💻 Author
+
+Gaurav Yadav
+
+Student Developer | Machine Learning & Data Structures Enthusiast
+
+CampusConnect is an academic software project demonstrating the integration of full-stack web development, Machine Learning, graph algorithms, and database-driven application design.
+
+🎯 Areas of Interest
+Python and Backend Development
+Machine Learning and Recommendation Systems
+Data Structures and Algorithms
+Full-Stack Web Development
+Graph Theory and Intelligent Search
+📄 License
+
+This project is intended to be distributed under the MIT License.
+
+Ensure that the repository contains a valid LICENSE file with the MIT License text before claiming MIT licensing.
+
+<p align="center">
+<b>Built with 💙 by Gaurav Yadav</b>
+<br/>
+<i>Connecting Students with the Clubs They'll Love.</i>
+</p>
 </p>
